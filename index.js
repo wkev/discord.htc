@@ -5,8 +5,12 @@ function DHTC(token) {
 }
 
 const Message = require("./code/structs/Message");
+const User = require("./code/structs/User");
+const Channel = require("./code/structs/Channel")
 
 DHTC.Client = Client;
-DHTC.Message = Client;
+DHTC.Message = Message;
+DHTC.User = User;
+DHTC.Channel = Channel;
 
 module.exports = DHTC;
