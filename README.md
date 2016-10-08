@@ -4,9 +4,9 @@
 ##Progress on the Lib!
 
 - [x] Client Struct
-- [ ] Message Struct
-- [ ] User Struct
-- [ ] Channel Struct
+- [x] Message Struct
+- [x] User Struct
+- [x] Channel Struct
 - [ ] Guild Struct
 
 ##Discord Server
