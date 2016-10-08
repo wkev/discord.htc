@@ -99,6 +99,7 @@ class Client extends EventEmitter {
 	/**
 	* Make message in channel!
 	* @arg {String} channelID The ID of a channel
+	* @arg {String} content The content off the message
 	*/
 	
 	makeMessage(channelID, content) {
