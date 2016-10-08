@@ -36,7 +36,6 @@ class Client extends EventEmitter {
         Promise.resolve("wss://gateway.discord.gg/");
         var self = this;
 		ws.on('open', function open() {
-            console.log('connected');
     		ws.send(JSON.stringify({
 	            "op": 2,
 	            "d": {
@@ -72,9 +71,6 @@ class Client extends EventEmitter {
             }
 		});
 		
-		ws.on('close', function close() {
-            console.log('disconnected');
-        });
 	}
 }
 
