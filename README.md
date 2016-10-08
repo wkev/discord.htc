@@ -17,7 +17,7 @@ npm install teamcorox/discord.htc
 npm install teamcorox/discord.htc#dev
 ```
 
-###Bot Example
+###Ping Example
 
 ```js
 const DHTC = require("discord.htc")
