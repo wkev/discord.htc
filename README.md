@@ -1,4 +1,4 @@
-![discord.htc logo](https://github.com/TeamCoroX/discord.htc/blob/master/dhtclogo.png?raw=true)
+![discord.htc logo](https://cdn.discordapp.com/attachments/216763379535052801/234375516742746112/Untitled-1.png)
 
 
 ##Progress on the Lib!
