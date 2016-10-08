@@ -7,7 +7,6 @@ bot.on("botReady", () => {
 });
 
 bot.on("createdMessage", (message) => {
-    console.log(message)
     if (message.content.startsWith(`${prefix}ping`)) {
         bot.makeMessage(message.channel_id, "pong")
     }
