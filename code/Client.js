@@ -112,7 +112,7 @@ class Client extends EventEmitter {
         			'Authorization': `Bot ${this.token}`
     			}
 		};
-		return requestp(options).then((message) => { new Message(message, this) });
+		return requestp(options).then((message) => { new Message(message, this) }).catch(function (err) { return Promise.reject(new Error("No permission in channel to Send Message")) });
 	}
 	snipMessage(channelID, messageID) {
 		let options = {
@@ -122,7 +122,7 @@ class Client extends EventEmitter {
         			'Authorization': `Bot ${this.token}`
     			}
 		};	
-		return requestp(options)
+		return requestp(options).catch(function (err) { return Promise.reject(new Error("No permission in channel to Delete Message")); });
 	}
 }
 
