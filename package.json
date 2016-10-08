@@ -1,0 +1,28 @@
+{
+  "name": "discord.htc",
+  "version": "1.0.0",
+  "description": "An Discord library utilizing JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamCoroX/discord.htc.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "TeamCoroX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamCoroX/discord.htc/issues"
+  },
+  "homepage": "https://github.com/TeamCoroX/discord.htc#readme",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "eventemitter3": "^2.0.2",
+    "request": "^2.75.0",
+    "ws": "^1.1.1"
+  }
+}
