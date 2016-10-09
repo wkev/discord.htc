@@ -1,11 +1,10 @@
-"use strict";
-
+'use strict'
 
 class VoiceRegion {
-    constructor(data) {
-        this.id = data.id;
-        this.name = data.name;
-    }
+  constructor (data) {
+    this.id = data.id
+    this.name = data.name
+  }
 }
 
-module.exports = VoiceRegion;
+module.exports = VoiceRegion

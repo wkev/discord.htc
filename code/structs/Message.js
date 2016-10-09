@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 /**
 * @prop {String} id The ID of the message
@@ -6,10 +6,10 @@
 
 */
 class Message {
-    constructor(data) {
-        this.id = data.id;
-        this.type = data.type;
-    }
+  constructor (data) {
+    this.id = data.id
+    this.type = data.type
+  }
 }
 
-module.exports = Message;
+module.exports = Message

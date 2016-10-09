@@ -1,5 +1,7 @@
-![discord.htc logo](https://cdn.discordapp.com/attachments/216763379535052801/234375516742746112/Untitled-1.png)
-
+<p align="center">
+    <img src="https://cdn.discordapp.com/attachments/216763379535052801/234375516742746112/Untitled-1.png" alt="discord.htc logo">
+    <a href="https://github.com/feross/standard"><img src="https://cdn.rawgit.com/feross/standard/master/badge.svg" alt="JavaScript Standard Style"></a>
+</p>
 
 ##How to install
 
@@ -46,6 +48,8 @@ bot.connect();
 - [x] Channel Struct
 - [ ] Guild Struct
 
+##Contributing
+When contributing to the library, be it a direct commit or a pull request, please make sure that your code is formatted properly according to the [standard js](http://standardjs.com/) styleguide to keep consistancy throughout the library.
 
 ##Discord Server
 
