@@ -13,6 +13,7 @@ var url = ("https://discordapp.com/api")
 const User = require("./structs/User");
 const Message = require("./structs/Message")
 const Channel = require("./structs/Channel")
+const Guild = require("./structs/Guild")
 
 
 /**
@@ -118,6 +119,76 @@ class Client extends EventEmitter {
     		}
 		};
 		return requestp(options).then((message) => { new Message(message, this) });
+	}
+
+	/**
+	* Remove a message!
+	* @arg {String} channelID The ID of a channel
+	* @arg {String} messageID The ID of a Message
+	*/
+	
+	snipMessage(channelID, messageID) {
+		let options = {
+    		method: 'DELETE',
+			uri: `${url}/channels/${channelID}/messages/${messageID}`,
+    		headers: {
+        		'Authorization': `Bot ${this.token}`
+    		}
+		};	
+		return requestp(options).catch(function (err) { return new Promise.reject(new Error("No permission in channel to Delete Message")); });
+	}
+	
+	changeGame(botGame) {
+		if (botGame !== undefined) {
+			this.game = botGame;
+		}
+		ws.send(JSON.stringify({
+			op: 3,
+			d: { 
+				"idle_since": "", 
+				"game": {
+					"name": `${botGame}`	
+				}
+			}
+    	}))
+	}
+	
+	makeChannel(serverID, channame, chantype) {
+		let options = {
+    		method: 'POST',
+			uri: `${url}/guilds/${serverID}/channels`,
+			body: {
+				"name": `${channame}`,
+				"type": `${chantype}`
+			},
+    		headers: {
+        		'Authorization': `Bot ${this.token}`
+    		},
+    		json: true // Automatically stringifies the body to JSON
+		};
+		return requestp(options).catch(function (err) { return new Promise.reject(new Error("No permission to create channel or undefined channel type")); });
+	}
+	
+	makeGuildRole(serverID) {
+		let options = {
+    		method: 'POST',
+			uri: `${url}/guilds/${serverID}/roles`,
+    		headers: {
+        		'Authorization': `Bot ${this.token}`
+    		}
+		};
+		return requestp(options).catch(function (err) { return new Promise.reject(new Error("No permission to create role!")); });
+	}
+
+	snipGuildRole(serverID, roleID) {
+		let options = {
+    		method: 'DELETE',
+			uri: `${url}/guilds/${serverID}/roles/${roleID}`,
+    		headers: {
+        		'Authorization': `Bot ${this.token}`
+    		}
+		};	
+		return requestp(options).catch(function (err) { return new Promise.reject(new Error("No permission) to delete role!")); });
 	}
 }
 
