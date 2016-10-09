@@ -36,35 +36,30 @@ class Client extends EventEmitter {
         this.token = token;
         this.startT = 0;
         this.isReady = false;
-    
-		
-		request.get({ url: `${url}/gateway?encoding=json&v=6` }).on('response', function(response) {  })
     }
 	connect() {
-
-        Promise.resolve("wss://gateway.discord.gg/");
-        var self = this;
+        	var self = this;
 		ws.on('open', function open() {
-    		ws.send(JSON.stringify({
-	            "op": 2,
-	            "d": {
-		            large_theshold: 250,
-		            compress: true,
-		            properties: {
-			            $os: process ? process.platform : 'windows',
-			            $browser: "discord.htc",
-			            $device: "discord.htc",
-			            $referrer: '',
-			            $referring_domain: ''
-		            },
-		            token: self.token
-	            }
-            }))
-           this.startT = Date.now();
+    			ws.send(JSON.stringify({
+	  	          "op": 2,
+	   	         "d": {
+			    	large_theshold: 250,
+			            compress: true,
+			            properties: {
+				            $os: process ? process.platform : 'windows',
+				            $browser: "discord.htc",
+				            $device: "discord.htc",
+				            $referrer: '',
+				            $referring_domain: ''
+			            },
+		 	           token: self.token
+	           	 }
+           	 }))
+           	this.startT = Date.now();
 		});
 		
 		
-		ws.on("message", function(data, flags) {
+	ws.on("message", function(data, flags) {
             if (flags.binary)
                 data = Zlib.inflateSync(data).toString();
                 var message = JSON.parse(data);
@@ -75,12 +70,12 @@ class Client extends EventEmitter {
                 case "READY":
                 	self.emit("botReady")
                 	this.isReady = true;
-                    this.heartbeatInterval = setInterval(()=>{
-                        ws.send(JSON.stringify({
-                            op: 1,
-                            d: this.seq
-                        }))
-                    }, message.d.heartbeat_interval);
+                	this.heartbeatInterval = setInterval(()=>{
+                		ws.send(JSON.stringify({
+                		op: 1,
+                		d: this.seq
+                		}))
+                	}, message.d.heartbeat_interval);
                 break;
                 case "MESSAGE_CREATE":
                 	self.emit("createdMessage", message.d)
@@ -108,17 +103,27 @@ class Client extends EventEmitter {
 			return;
 		}
 		let options = {
-    		method: 'POST',
+    			method: 'POST',
 			uri: `${url}/channels/${channelID}/messages`,
-    		json: true, // Automatically stringifies the body to JSON
-    		form: {
-        		'content': `${content}`
-    		},
-    		headers: {
-        		'Authorization': `Bot ${this.token}`
-    		}
+    			json: true, // Automatically stringifies the body to JSON
+    			form: {
+        			'content': `${content}`
+    			},
+    			headers: {
+        			'Authorization': `Bot ${this.token}`
+    			}
 		};
-		return requestp(options).then((message) => { new Message(message, this) });
+		return requestp(options).then((message) => { new Message(message, this) }).catch(function (err) { return Promise.reject(new Error("No permission in channel to Send Message")) });
+	}
+	snipMessage(channelID, messageID) {
+		let options = {
+    			method: 'DELETE',
+			uri: `${url}/channels/${channelID}/messages/${messageID}`,
+    			headers: {
+        			'Authorization': `Bot ${this.token}`
+    			}
+		};	
+		return requestp(options).catch(function (err) { return Promise.reject(new Error("No permission in channel to Delete Message")); });
 	}
 
 	/**
