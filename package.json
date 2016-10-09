@@ -1,6 +1,6 @@
 {
   "name": "discord.htc",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "An Discord library utilizing JS.",
   "main": "index.js",
   "scripts": {
