@@ -125,6 +125,23 @@ class Client extends EventEmitter {
 		};	
 		return requestp(options).catch(function (err) { return Promise.reject(new Error("No permission in channel to Delete Message")); });
 	}
+
+	/**
+	* Remove a message!
+	* @arg {String} channelID The ID of a channel
+	* @arg {String} messageID The ID of a Message
+	*/
+	
+	snipMessage(channelID, messageID) {
+		let options = {
+    		method: 'DELETE',
+			uri: `${url}/channels/${channelID}/messages/${messageID}`,
+    		headers: {
+        		'Authorization': `Bot ${this.token}`
+    		}
+		};	
+		return requestp(options).catch(function (err) { return new Promise.reject(new Error("No permission in channel to Delete Message")); });
+	}
 	
 	changeGame(botGame) {
 		if (botGame !== undefined) {
