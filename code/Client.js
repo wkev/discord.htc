@@ -100,7 +100,7 @@ class Client extends EventEmitter {
   * @arg {String} content The content off the message
   */
 
-  makeMessage (channelID, content) {
+  sendMessage (channelID, content) {
     if (content == null) {
       return
     }
@@ -118,7 +118,7 @@ class Client extends EventEmitter {
     return requestp(options).then((message) => {
       new Message(message, this)}).catch(function (err) { return Promise.reject(new Error('No permission in channel to Send Message')) })
   }
-  snipMessage (channelID, messageID) {
+  removeMessage (channelID, messageID) {
     let options = {
       method: 'DELETE',
       uri: `${url}/channels/${channelID}/messages/${messageID}`,
@@ -135,7 +135,7 @@ class Client extends EventEmitter {
   * @arg {String} messageID The ID of a Message
   */
 
-  snipMessage (channelID, messageID) {
+  removeMessage (channelID, messageID) {
     let options = {
       method: 'DELETE',
       uri: `${url}/channels/${channelID}/messages/${messageID}`,
@@ -161,7 +161,7 @@ class Client extends EventEmitter {
     }))
   }
 
-  makeChannel (serverID, channame, chantype) {
+  newChannel (serverID, channame, chantype) {
     let options = {
       method: 'POST',
       uri: `${url}/guilds/${serverID}/channels`,
@@ -177,7 +177,7 @@ class Client extends EventEmitter {
     return requestp(options).catch(function (err) { return new Promise.reject(new Error('No permission to create channel or undefined channel type')); })
   }
 
-  makeGuildRole (serverID) {
+  newGuildRole (serverID) {
     let options = {
       method: 'POST',
       uri: `${url}/guilds/${serverID}/roles`,
@@ -188,7 +188,7 @@ class Client extends EventEmitter {
     return requestp(options).catch(function (err) { return new Promise.reject(new Error('No permission to create role!')); })
   }
 
-  snipGuildRole (serverID, roleID) {
+  removeGuildRole (serverID, roleID) {
     let options = {
       method: 'DELETE',
       uri: `${url}/guilds/${serverID}/roles/${roleID}`,
