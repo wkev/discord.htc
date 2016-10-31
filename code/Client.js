@@ -4,13 +4,8 @@ const Zlib = require('zlib')
 const requestp = require('request-promise-any')
 const ws = new WebSocket('wss://gateway.discord.gg/')
 
-var Promise
+
 const EventEmitter = require('events').EventEmitter
-try {
-  Promise = require('bluebird')
-} catch(err) {
-  Promise = global.Promise
-}
 var url = ('https://discordapp.com/api')
 
 const User = require('./structs/User')
