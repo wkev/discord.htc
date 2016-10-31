@@ -1,7 +1,7 @@
 {
   "name": "discord.htc",
   "version": "1.0.6",
-  "description": "An Discord library utilizing JS.",
+  "description": "A Discord Library written in Javascript using the NodeJS runtime.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/TeamCoroX/discord.htc#readme",
   "dependencies": {
-    "bluebird": "^3.4.6",
     "eventemitter3": "^2.0.2",
     "request": "^2.75.0",
     "request-promise-any": "^1.0.3",
