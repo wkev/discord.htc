@@ -33,7 +33,7 @@ bot.on("botReady", () => {
 
 bot.on("createdMessage", (message) => {
     if (message.content.startsWith(`${prefix}ping`)) {
-        bot.makeMessage(message.channel_id, "pong")
+        bot.newMessage(message.channel_id, "pong")
     }
 });
 
